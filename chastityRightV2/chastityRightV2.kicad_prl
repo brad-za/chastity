@@ -21,8 +21,8 @@
       "keepouts": false,
       "lockedItems": false,
       "otherItems": false,
-      "pads": false,
-      "text": false,
+      "pads": true,
+      "text": true,
       "tracks": true,
       "vias": true,
       "zones": false
@@ -33,16 +33,12 @@
       2,
       3,
       4,
-      5,
-      7,
       9,
       10,
       12,
       13,
       15,
       16,
-      17,
-      18,
       19,
       20,
       21,
@@ -60,7 +56,7 @@
       35,
       40
     ],
-    "visible_layers": "fffffdf_ffffffff",
+    "visible_layers": "dfefcdf_ffffffff",
     "zone_display_mode": 1
   },
   "meta": {
