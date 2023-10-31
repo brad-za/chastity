@@ -56,16 +56,15 @@
         }
       ],
       "drc_exclusions": [
-        "unconnected_items|214811000|113858000|4b87dece-0fb5-4806-9ad6-67533d3f28cb|692b3703-d7b1-49af-b8d8-a4c11385aed5",
-        "unconnected_items|216277000|92614000|59a7c1b4-0702-4f1b-a4a6-3e0b05dbb7ef|9366dd92-3b60-47c1-8bf5-071d03afa353",
-        "unconnected_items|230639496|129492000|79587a36-5bdf-4547-9910-7ce51166de86|0fa5a8fe-639f-49ce-a835-ebfc10d54e71",
-        "unconnected_items|230835000|105197000|ac1e555c-dce3-4ee4-a67c-5a877bf40fed|9104b576-d5e0-4c1f-97d9-328b2bba2459",
-        "unconnected_items|230844000|94630000|25f26ecf-2def-45ba-aa9b-2b46ac34ee3c|7d0b853a-eeff-4293-8ba1-37712667eb7d",
-        "unconnected_items|234997996|88533000|94c63d27-2f6f-4ef3-b485-f55bb898e28e|8b97cfbe-5e05-4109-b54e-974ed2936a65",
-        "unconnected_items|235239496|118362000|6fca867b-375a-4640-8c95-1a2738e0f521|d18bcb8b-913d-4c41-ae32-906b93ccb9d1",
-        "unconnected_items|235239496|129512000|0fa5a8fe-639f-49ce-a835-ebfc10d54e71|6fca867b-375a-4640-8c95-1a2738e0f521",
-        "unconnected_items|236519496|120737000|2a5a933a-6f88-474b-add7-67313f8a9946|75fe29a5-9a9f-4866-9563-77ead1a28f18",
-        "unconnected_items|236536000|90771000|b3d27b4e-eecd-4d14-9747-0d7afa916765|0a8cdcbf-a60e-495f-ab28-19064ea5dd83"
+        "unconnected_items|199681500|130117786|1a77fa92-be6a-4263-8e89-f39a9200f46c|1a77fa92-be6a-4263-8e89-f39a9200f46c",
+        "unconnected_items|214736000|114002612|5a45e1eb-86eb-410f-aa46-5b365d58a4cf|0ff6d198-498e-465e-ac9b-2a3b8bf2f73e",
+        "unconnected_items|216992000|111534000|cbbefda2-5684-4ff3-b6de-d00a75c8701b|ffb05630-9311-49ec-a091-59b9533b1c13",
+        "unconnected_items|230924000|108270000|04656a8c-2b26-474e-ae12-69383f9dd777|6e8e3325-5326-49a6-851c-4d2b9fe46548",
+        "unconnected_items|231532232|90855146|1a77fa92-be6a-4263-8e89-f39a9200f46c|1a77fa92-be6a-4263-8e89-f39a9200f46c",
+        "unconnected_items|233000000|90720000|49c1c516-8257-4ee6-aaf0-5b70e07610df|55a5e387-a163-48d7-9952-36833d8392b7",
+        "unconnected_items|236536000|90771000|f94b67c2-759c-4de5-bb97-27806249cd40|0a8cdcbf-a60e-495f-ab28-19064ea5dd83",
+        "unconnected_items|237197996|88533000|77c79fb7-82d3-4cb2-b242-33943d72dcbc|4dbbb4e6-67ae-4baf-9cfd-3a5a159a88cb",
+        "unconnected_items|238886000|91721000|f0f81a61-0492-4d2f-a2f4-0b8dffc0820b|b82909d4-0593-4e62-aa52-aa8fd8d611d5"
       ],
       "meta": {
         "version": 2
