@@ -1,0 +1,25 @@
+#include "chastity.dtsi"
+
+&default_transform {
+    col-offset = <7>;
+};
+
+&kscan0 {
+    col-gpios
+        = <&gpio1 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // C6 -> Rightmost 
+        , <&gpio0 8  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // C5
+        , <&gpio0 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // C4
+        , <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // C3
+        , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // C2
+        , <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // C1
+        , <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // C0 -> Leftmost 
+        ;
+
+    row-gpios
+        = <&gpio0 2  GPIO_ACTIVE_HIGH>  // R4-> Bottom row 
+        , <&gpio0 9  GPIO_ACTIVE_HIGH>  // R3
+        , <&gpio0 22 GPIO_ACTIVE_HIGH>  // R2
+        , <&gpio0 24 GPIO_ACTIVE_HIGH>  // R1
+        , <&gpio1 0  GPIO_ACTIVE_HIGH>  // R0 -> Top row 
+        ;
+};

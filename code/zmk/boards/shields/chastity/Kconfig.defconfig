@@ -1,0 +1,23 @@
+if SHIELD_CHASTITY_LEFT
+
+config ZMK_KEYBOARD_NAME
+	default "Chastity"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+	default y
+
+endif
+
+if SHIELD_CHASTITY_RIGHT
+
+config ZMK_KEYBOARD_NAME
+	default "Chastity Right"
+
+endif
+
+if SHIELD_CHASTITY_LEFT || SHIELD_CHASTITY_RIGHT
+
+config ZMK_SPLIT
+	default y
+
+endif

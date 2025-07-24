@@ -1,0 +1,41 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#define DEFAULT 0
+#define NUMPAD  1
+#define NAV     2
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                &kp GRAVE  &kp N1    &kp N2    &kp N3     &kp N4    &kp N5                         &kp N6   &kp N7    &kp N8     &kp N9      &kp N0    &kp MINUS
+                &kp LBKT   &kp Q     &kp W     &kp E      &kp R     &kp T                          &kp Y    &kp U     &kp I      &kp O       &kp P     &kp RBKT
+                &kp TAB    &kp A     &kp S     &kp D      &kp F     &kp G                          &kp H    &kp J     &kp K      &kp L       &kp SEMI  &kp SQT
+                &kp LSHFT  &kp Z     &kp X     &kp C      &kp V     &kp B      &kp BSPC     &kp A  &kp N    &kp M     &kp COMMA  &kp DOT     &kp FSLH  &kp RSHFT
+                &kp LCTRL  &kp LGUI  &tog NAV  &kp LALT   &kp BSPC  &kp SPACE                      &kp RET  &kp DEL   &kp PLUS   &tog NUMPAD &kp ESC   &kp RCTRL
+            >;
+        };
+
+        layer_1 {
+            bindings = <
+                &trans  &kp F1    &kp F2        &kp F3         &kp F4         &kp F5                        &kp F6  &kp F7  &kp F8   &kp F9  &kp F10   &kp F11
+                &trans  &kp FSLH  &kp LS(AMPS)  &kp LS(STAR)   &kp LS(LPAR)   &kp LS(RPAR)                  &trans  &kp N7  &kp N8   &kp N9  &kp N0    &trans
+                &trans  &trans    &kp LS(DLLR)  &kp LS(PRCNT)  &kp LS(CARET)  &kp MINUS                     &trans  &kp N4  &kp N5   &kp N6  &trans    &trans
+                &trans  &trans    &kp LS(EXCL)  &kp LS(AT)     &kp LS(POUND)  &kp PLUS      &trans  &trans  &kp N0  &kp N1  &kp N2   &kp N3  &kp BSLH  &kp LSHFT
+                &trans  &trans    &trans        &trans         &trans         &trans                        &trans  &trans  &kp DOT  &trans  &trans    &trans
+            >;
+        };
+
+        layer_2 {
+            bindings = <
+                &kp CAPS  &trans  &kp K_PREVIOUS  &kp K_PLAY_PAUSE  &kp K_NEXT  &trans                  &trans  &trans    &trans    &trans     &trans    &trans
+                &trans    &trans  &trans          &trans            &trans      &trans                  &trans  &kp HOME  &kp UP    &kp END    &trans    &trans
+                &trans    &trans  &trans          &trans            &trans      &trans                  &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans    &trans
+                &trans    &trans  &trans          &trans            &trans      &trans  &trans  &trans  &trans  &trans    &trans    &trans     &kp BSLH  &trans
+                &trans    &trans  &trans          &trans            &trans      &trans                  &trans  &trans    &trans    &trans     &trans    &trans
+            >;
+        };
+    };
+};
