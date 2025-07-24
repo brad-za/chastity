@@ -2,7 +2,7 @@
 
 A wireless split ergonomic keyboard featuring Kailh Choc v1 low-profile switches, rotary encoders, and ZMK firmware.
 
-![Chastity Keyboard](pictures/choc/v1/left-front.png)
+![Chastity Keyboard_ChocV1](pictures/choc/v1/right-front.png)
 
 ## Features
 
