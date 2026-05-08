@@ -1,41 +1,87 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
 #define DEFAULT 0
 #define NUMPAD  1
 #define NAV     2
+#define GAMING  3
 
 / {
+    behaviors {
+        inc_dec_msc: inc_dec_msc {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        // Hold RCTRL + RET (right thumb) + P together to toggle GAMING (WASD->ESDF).
+        combo_toggle_gaming {
+            timeout-ms = <60>;
+            require-prior-idle-ms = <100>;
+            key-positions = <61 56 22>;
+            bindings = <&tog GAMING>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-                &kp GRAVE  &kp N1    &kp N2    &kp N3     &kp N4    &kp N5                         &kp N6   &kp N7    &kp N8     &kp N9      &kp N0    &kp MINUS
-                &kp LBKT   &kp Q     &kp W     &kp E      &kp R     &kp T                          &kp Y    &kp U     &kp I      &kp O       &kp P     &kp RBKT
-                &kp TAB    &kp A     &kp S     &kp D      &kp F     &kp G                          &kp H    &kp J     &kp K      &kp L       &kp SEMI  &kp SQT
-                &kp LSHFT  &kp Z     &kp X     &kp C      &kp V     &kp B      &kp BSPC     &kp A  &kp N    &kp M     &kp COMMA  &kp DOT     &kp FSLH  &kp RSHFT
-                &kp LCTRL  &kp LGUI  &tog NAV  &kp LALT   &kp BSPC  &kp SPACE                      &kp RET  &kp DEL   &kp PLUS   &tog NUMPAD &kp ESC   &kp RCTRL
+                &kp GRAVE   &kp N1     &kp N2    &kp N3     &kp N4    &kp N5                              &kp N6     &kp N7    &kp N8     &kp N9       &kp N0    &kp MINUS
+                &kp LBKT    &kp Q      &kp W     &kp E      &kp R     &kp T                               &kp Y      &kp U     &kp I      &kp O        &kp P     &kp RBKT
+                &kp TAB     &kp A      &kp S     &kp D      &kp F     &kp G                               &kp H      &kp J     &kp K      &kp L        &kp SEMI  &kp SQT
+                &kp LSHFT   &kp Z      &kp X     &kp C      &kp V     &kp B      &kp F24      &kp C_MUTE  &kp N      &kp M     &kp COMMA  &kp DOT      &kp FSLH  &kp RSHFT
+                &kp LCTRL   &kp LGUI   &tog NAV  &kp LALT   &kp BSPC  &kp SPACE                           &kp RET    &kp DEL   &kp EQUAL  &tog NUMPAD  &kp ESC   &kp RCTRL
             >;
+
+            sensor-bindings = <&inc_dec_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        layer_1 {
+        numpad_layer {
             bindings = <
-                &trans  &kp F1    &kp F2        &kp F3         &kp F4         &kp F5                        &kp F6  &kp F7  &kp F8   &kp F9  &kp F10   &kp F11
-                &trans  &kp FSLH  &kp LS(AMPS)  &kp LS(STAR)   &kp LS(LPAR)   &kp LS(RPAR)                  &trans  &kp N7  &kp N8   &kp N9  &kp N0    &trans
-                &trans  &trans    &kp LS(DLLR)  &kp LS(PRCNT)  &kp LS(CARET)  &kp MINUS                     &trans  &kp N4  &kp N5   &kp N6  &trans    &trans
-                &trans  &trans    &kp LS(EXCL)  &kp LS(AT)     &kp LS(POUND)  &kp PLUS      &trans  &trans  &kp N0  &kp N1  &kp N2   &kp N3  &kp BSLH  &kp LSHFT
-                &trans  &trans    &trans        &trans         &trans         &trans                        &trans  &trans  &kp DOT  &trans  &trans    &trans
+                &trans  &kp F1    &kp F2        &kp F3         &kp F4         &kp F5                                  &kp F6  &kp F7  &kp F8   &kp F9  &kp F10   &kp F11
+                &trans  &kp FSLH  &kp LS(AMPS)  &kp LS(STAR)   &kp LS(LPAR)   &kp LS(RPAR)                            &trans  &kp N7  &kp N8   &kp N9  &kp N0    &trans
+                &trans  &trans    &kp LS(DLLR)  &kp LS(PRCNT)  &kp LS(CARET)  &kp MINUS                               &trans  &kp N4  &kp N5   &kp N6  &trans    &trans
+                &trans  &trans    &kp LS(EXCL)  &kp LS(AT)     &kp LS(POUND)  &kp PLUS      &trans         &trans     &kp N0  &kp N1  &kp N2   &kp N3  &kp BSLH  &trans
+                &trans  &trans    &trans        &trans         &trans         &trans                                  &trans  &trans  &kp DOT  &trans  &trans    &trans
             >;
+
+            sensor-bindings = <&inc_dec_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        layer_2 {
+        nav_layer {
             bindings = <
-                &kp CAPS  &trans  &kp K_PREVIOUS  &kp K_PLAY_PAUSE  &kp K_NEXT  &trans                  &trans  &trans    &trans    &trans     &trans    &trans
-                &trans    &trans  &trans          &trans            &trans      &trans                  &trans  &kp HOME  &kp UP    &kp END    &trans    &trans
-                &trans    &trans  &trans          &trans            &trans      &trans                  &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans    &trans
-                &trans    &trans  &trans          &trans            &trans      &trans  &trans  &trans  &trans  &trans    &trans    &trans     &kp BSLH  &trans
-                &trans    &trans  &trans          &trans            &trans      &trans                  &trans  &trans    &trans    &trans     &trans    &trans
+                &kp CAPS  &trans  &kp C_PREV  &kp C_PP  &kp C_NEXT  &trans                                  &out OUT_TOG  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_CLR
+                &trans    &trans  &trans      &trans    &trans      &trans                                  &trans  &kp HOME  &kp UP    &kp END    &trans    &trans
+                &trans    &trans  &trans      &trans    &trans      &trans                                  &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans    &trans
+                &trans    &trans  &trans      &trans    &trans      &trans   &trans         &trans          &trans  &trans    &trans    &trans     &kp BSLH  &trans
+                &trans    &trans  &trans      &trans    &trans      &trans                                  &trans  &trans    &trans    &trans     &trans    &trans
             >;
+
+            sensor-bindings = <&inc_dec_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        // GAMING: every binding on the LEFT half is shifted ONE column to the RIGHT.
+        // The now-blank leftmost column is filled with right-side staples (Esc / Enter / Bspc / LShift / LCtrl).
+        // Right half is transparent so it falls through to the default layer.
+        gaming_layer {
+            bindings = <
+                &kp ESC    &kp N1     &kp N2    &kp N3     &kp N4    &kp N5                              &trans     &trans    &trans     &trans       &trans    &trans
+                &kp I      &kp L      &kp Q     &kp W      &kp E     &kp R                               &trans     &trans    &trans     &trans       &trans    &trans
+                &kp N      &kp TAB    &kp A     &kp S      &kp D     &kp F                               &trans     &trans    &trans     &trans       &trans    &trans
+                &kp M      &kp F24    &kp Z     &kp X      &kp C     &kp V      &trans       &trans      &trans     &trans    &trans     &trans       &trans    &trans
+                &kp LCTRL  &kp H      &kp J     &kp B      &kp M     &kp BSPC                            &trans     &trans    &trans     &trans       &trans    &trans
+            >;
+
+            sensor-bindings = <&inc_dec_msc SCRL_UP SCRL_DOWN &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };

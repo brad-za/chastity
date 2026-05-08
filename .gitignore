@@ -1,0 +1,20 @@
+# west-managed sources (fetched by `west update`)
+code/zmk/zephyr/
+code/zmk/modules/
+code/zmk/optional/
+code/zmk/tools/
+
+# zmk upstream (already a submodule/clone managed separately)
+code/zmk/zmk/
+
+# build outputs
+code/zmk/build/
+build/
+*.uf2
+*.hex
+*.bin
+
+# editor / OS
+.DS_Store
+*.swp
+.vscode/

@@ -27,6 +27,45 @@ RC(4,0) RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5)                   RC(4,8) RC(4,9
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
-        diode-direction = "row2col";
+        diode-direction = "col2row";
     };
+
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "disabled";
+    };
+
+    right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "disabled";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder &right_encoder>;
+        triggers-per-rotation = <20>;
+    };
+};
+
+/* Free up matrix GPIOs that nice!nano v2's default pinctrl assigns to peripherals.
+ * Right half cols 4/5 collide with i2c0/spi1; disabling those peripherals lets
+ * kscan own the pins. uart0 stays disabled too — although the bootloader leaves
+ * UARTE0.PSEL.TXD/RXD bound to P0.06/P0.08 so right-half col 2 (the U/J/M
+ * column + inner thumbs) is not freed by status="disabled" alone. That's a
+ * known limitation of this baseline. */
+&uart0 { status = "disabled"; };
+&i2c0  { status = "disabled"; };
+&spi1  { status = "disabled"; };
+
+/* Release P0.09 (NFC1) and P0.10 (NFC2) from the nRF52840's NFC peripheral so
+ * they work as standard GPIOs in the matrix. Programs UICR on first boot.
+ * Reverting requires `nrfjprog --eraseall` per MCU. */
+&uicr {
+    nfct-pins-as-gpios;
 };

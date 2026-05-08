@@ -109,11 +109,38 @@ This keyboard uses ZMK firmware with configurations located in `code/zmk/`.
 4. Download and flash the generated `.uf2` files
 
 ### Keymap Configuration
-The default keymap is located in `config/chastity.keymap`. Key features:
-- Base layer with QWERTY layout
-- Function layer with numbers and symbols
-- Navigation layer with arrows and media keys
-- Rotary encoder support for volume/scroll
+
+The keymap lives at `code/zmk/boards/shields/chastity/chastity.keymap`. Four layers are defined:
+
+| # | Name     | Purpose                                                                                                              |
+|---|----------|----------------------------------------------------------------------------------------------------------------------|
+| 0 | DEFAULT  | QWERTY base layer.                                                                                                   |
+| 1 | NUMPAD   | F-keys on the top row, numpad cluster on the right hand, shifted-symbol cluster on the left. Toggle with `tog NUMPAD`. |
+| 2 | NAV      | Caps Lock + media controls on the top-left, arrow / Home / End cluster on the right hand, **Bluetooth controls on the top-right row**. Toggle with `tog NAV`. |
+| 3 | GAMING   | Shifts the left half one column to the right so physical WASD outputs ESDF; the now-blank inner column gets right-side letters (P / L / M / O / I / U) so the right hand isn't needed while gaming. Toggle with the chord **RCTRL + RET (right thumb) + P**. |
+
+#### Encoders
+
+| Encoder | Rotation                       | Press (matrix-shared with the inner thumb key)            |
+|---------|--------------------------------|------------------------------------------------------------|
+| Left    | Mouse scroll wheel up / down   | `F24` — useful for binding push-to-talk or stream macros   |
+| Right   | Volume up / down               | `C_MUTE`                                                   |
+
+The encoder press position shares its matrix net with the inner-thumb key on each half — so pressing the inner thumb fires the same key as the encoder click.
+
+#### Bluetooth controls (on NAV layer, top-right row, inner → outer)
+
+```
+out OUT_TOG | bt BT_SEL 0 | bt BT_SEL 1 | bt BT_SEL 2 | bt BT_SEL 3 | bt BT_CLR
+```
+
+- `OUT_TOG` toggles output between USB and BLE
+- `BT_SEL 0..3` switches between four paired hosts
+- `BT_CLR` clears the bond on the currently selected profile (use this to re-pair). Placed at the outer edge so it isn't pressed by accident.
+
+#### BLE name
+
+The keyboard advertises as **`Chastity`** (set in `Kconfig.defconfig`). The right half advertises as `Chastity Right` to the central only — your host never sees it.
 
 ## Case Options
 
