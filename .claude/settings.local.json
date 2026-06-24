@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(dtsi|overlay|conf|keymap|yaml\\)$\")",
+      "WebSearch",
+      "WebFetch(domain:zmk.dev)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:kriscables.com)",
+      "WebFetch(domain:docs.zephyrproject.org)"
+    ]
+  }
+}
